@@ -1,7 +1,7 @@
 package com.zerobase.application;
 
-import com.zerobase.client.MailgunClient;
-import com.zerobase.client.mailgun.SendMailForm;
+//import com.zerobase.client.MailgunClient;
+//import com.zerobase.client.mailgun.SendMailForm;
 import com.zerobase.domain.SignUpForm;
 import com.zerobase.domain.model.Customer;
 import com.zerobase.exception.CustomException;
@@ -15,7 +15,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 @RequiredArgsConstructor
 public class SignUpApplication {
 
-    private final MailgunClient mailgunClient;
+    //private final MailgunClient mailgunClient;
     private final SignUpCustomerService signUpCustomerService;
 
     public void customerVerify(String email, String code){
@@ -30,7 +30,7 @@ public class SignUpApplication {
 
         String code = getRandomCode();
 
-        SendMailForm sendMailForm = SendMailForm.builder()
+        /*SendMailForm sendMailForm = SendMailForm.builder()
                 .from("tester@tester.com")
                 .to(form.getEmail())
                 .subject("Verification Email!")
@@ -43,7 +43,7 @@ public class SignUpApplication {
                 )
                 .build();
 
-        this.mailgunClient.sendEmail(sendMailForm);
+        this.mailgunClient.sendEmail(sendMailForm);*/
         this.signUpCustomerService.changeCustomerValidateEmail(
                 customer.getId(), code);
 
