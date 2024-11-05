@@ -8,21 +8,35 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.servlet.ServletException;
+
 @Slf4j
 @RestControllerAdvice
 public class ExceptionController {
 
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ExceptionResponse> customRequestException(
-            final CustomException customException
-    ) {
-        log.warn("api Exception : {}", customException.getErrorCode());
+            final CustomException e) {
+
+        showErrorCode(e.getMessage());
         return ResponseEntity.badRequest().body(
                 new ExceptionResponse(
-                        customException.getMessage(),
-                        customException.getErrorCode()
+                        e.getMessage(),
+                        e.getErrorCode()
                 )
         );
+    }
+
+    /*@ExceptionHandler(ServletException.class)
+    public ResponseEntity<String> servletException(
+            final CustomException e) {
+
+        showErrorCode(e.getMessage());
+        return ResponseEntity.badRequest().body("잘못된 인증 시도");
+    }*/
+
+    public static void showErrorCode(String errorCode) {
+        log.warn("api Exception : {}", errorCode);
     }
 
     @Getter
