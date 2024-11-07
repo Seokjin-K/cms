@@ -1,15 +1,17 @@
 package com.zerobase.application;
 
 import com.zerobase.domain.SignInForm;
-import com.zerobase.domain.common.UserType;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import com.zerobase.domain.model.Customer;
+import com.zerobase.domain.model.Seller;
 import com.zerobase.exception.CustomException;
-import com.zerobase.service.CustomerService;
+import com.zerobase.service.customer.CustomerService;
+import com.zerobase.service.seller.SellerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import static com.zerobase.domain.common.UserType.CUSTOMER;
+import static com.zerobase.domain.common.UserType.SELLER;
 import static com.zerobase.exception.ErrorCode.LOGIN_CHECK_FAIL;
 
 @Service
@@ -17,6 +19,7 @@ import static com.zerobase.exception.ErrorCode.LOGIN_CHECK_FAIL;
 public class SignInApplication {
 
     private final CustomerService customerService;
+    private final SellerService sellerService;
     private final JwtAuthenticationProvider provider;
 
     public String customerLoginToken(SignInForm form) {
@@ -31,6 +34,18 @@ public class SignInApplication {
                 customer.getEmail(),
                 customer.getId(),
                 CUSTOMER
+        );
+    }
+
+    public String sellerLoginToken(SignInForm form) {
+        Seller seller = sellerService.findValidSeller(
+                form.getEmail(), form.getPassword())
+                .orElseThrow(() -> new CustomException(LOGIN_CHECK_FAIL));
+
+        return provider.createToken(
+                seller.getEmail(),
+                seller.getId(),
+                SELLER
         );
     }
 }

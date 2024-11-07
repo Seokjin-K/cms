@@ -13,16 +13,31 @@ public class SignUpController {
 
     private final SignUpApplication signUpApplication;
 
-    @PostMapping
-    public ResponseEntity<String> customerSignUp(@RequestBody SignUpForm form) {
-        return ResponseEntity.ok(this.signUpApplication.customerSignup(form));
+    @PostMapping("customer")
+    public ResponseEntity<String> customerSignUp(
+            @RequestBody SignUpForm form) {
+        return ResponseEntity.ok(signUpApplication.customerSignup(form));
     }
 
-    @PutMapping("/verify/customer")
+    @GetMapping("/customer/verify")
     public ResponseEntity<String> verifyCustomer(
             @RequestParam("email") String email,
             @RequestParam("code") String code) {
-        this.signUpApplication.customerVerify(email, code);
+        signUpApplication.customerVerify(email, code);
+        return ResponseEntity.ok("인증이 완료되었습니다.");
+    }
+
+    @PostMapping("seller")
+    public ResponseEntity<String> sellerSignUp(
+            @RequestBody SignUpForm form) {
+        return ResponseEntity.ok(signUpApplication.sellerSignup(form));
+    }
+
+    @GetMapping("/seller/verify")
+    public ResponseEntity<String> verifySeller(
+            @RequestParam("email") String email,
+            @RequestParam("code") String code) {
+        this.signUpApplication.sellerVerify(email, code);
         return ResponseEntity.ok("인증이 완료되었습니다.");
     }
 }
