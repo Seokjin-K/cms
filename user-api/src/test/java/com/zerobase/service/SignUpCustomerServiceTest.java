@@ -2,10 +2,10 @@ package com.zerobase.service;
 
 import com.zerobase.domain.SignUpForm;
 import com.zerobase.domain.model.Customer;
+import com.zerobase.service.customer.SignUpCustomerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 
@@ -27,7 +27,7 @@ class SignUpCustomerServiceTest {
                 .phone("01000000000")
                 .build();
 
-        Customer customer = this.service.signUp(form);
-        assertNotNull(this.service.signUp(form).getId());
+        Customer customer = service.signUp(form);
+        assertNotNull(customer.getId());
     }
 }

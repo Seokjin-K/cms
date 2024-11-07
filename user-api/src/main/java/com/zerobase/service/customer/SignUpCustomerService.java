@@ -1,4 +1,4 @@
-package com.zerobase.service;
+package com.zerobase.service.customer;
 
 import com.zerobase.domain.SignUpForm;
 import com.zerobase.domain.model.Customer;
