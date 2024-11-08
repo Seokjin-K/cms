@@ -1,10 +1,7 @@
 package com.zerobase.cms.order.domain.model;
 
 import com.zerobase.cms.order.domain.product.AddProductItemForm;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.envers.AuditOverride;
 import org.hibernate.envers.Audited;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

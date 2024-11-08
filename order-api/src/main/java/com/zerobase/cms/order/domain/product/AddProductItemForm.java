@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddProductItemForm {
-
     private Long productId;
     private String name;
     private Integer price;
