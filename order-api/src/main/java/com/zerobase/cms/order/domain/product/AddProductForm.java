@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddProductForm {
-
     private String name;
     private String description;
     private List<AddProductItemForm> items;
