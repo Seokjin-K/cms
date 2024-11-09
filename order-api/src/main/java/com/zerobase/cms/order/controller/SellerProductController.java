@@ -64,7 +64,7 @@ public class SellerProductController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping
+    @DeleteMapping("/item")
     public ResponseEntity<Void> deleteProductItem(
             @RequestHeader(name = "X-AUTH-TOKEN") String token,
             @RequestParam Long id) {

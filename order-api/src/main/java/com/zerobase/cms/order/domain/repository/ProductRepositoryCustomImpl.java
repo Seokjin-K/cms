@@ -2,6 +2,7 @@ package com.zerobase.cms.order.domain.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.zerobase.cms.order.domain.model.Product;
+import com.zerobase.cms.order.domain.model.QProduct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
